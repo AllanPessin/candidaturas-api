@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Application;
+use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 
 class ApplicationTest extends TestCase
@@ -11,7 +12,7 @@ class ApplicationTest extends TestCase
     {
         $application = Application::factory()->make();
 
-        $this->postJson('/api/applicaitons', [
+        $this->postJson('/api/applications', [
             $application,
         ])
             ->assertUnauthorized();
@@ -21,15 +22,13 @@ class ApplicationTest extends TestCase
     {
         $this->authenticated();
 
-        $application = Application::factory()->make();
+        $application = Application::factory()->create();
 
-        $this->postJson('/api/applicaitons', [
-            $application
-        ])
+        $this->postJson('/api/applications', $application->toArray())
             ->assertStatus(201)
-            ->assertJson([
-                'message' => 'Applicatoin created successfully'
-            ]);
+            ->assertJson(
+                fn (AssertableJson $json) => $json->where('message', 'Application created successfully')
+            );
 
         $this->assertDatabaseHas('applications', [
             'id' => $application->id,
@@ -47,5 +46,73 @@ class ApplicationTest extends TestCase
             'contract_id' => $application->contract_id,
             'category_id' => $application->category_id,
         ]);
+    }
+
+    public function test_application_can_be_searchable()
+    {
+        $this->authenticated();
+
+        Application::factory()->create(['position' => 'Application one']);
+        Application::factory()->create(['position' => 'Application two']);
+
+        $this->getJson('/api/applications?search=one')
+            ->assertOk()
+            ->assertJson(
+                fn (AssertableJson $json) => $json->has(
+                    'data.0',
+                    fn ($item) => $item->where('position', 'Application one')
+                        ->hasAll([
+                            'link',
+                            'contact',
+                            'applied_date',
+                            'interview_date',
+                            'salary',
+                            'feedback',
+                        ])
+                        ->etc()
+                )
+                    ->has(
+                        'links',
+                        fn (AssertableJson $links) => $links->hasAll(['first', 'last', 'prev', 'next'])
+                    )
+                    ->hasAll(['meta', 'links'])
+            );
+    }
+
+    public function test_update_application()
+    {
+        $this->authenticated();
+
+        $application = Application::factory()->create(['position' => 'Application one']);
+
+        $this->putJson("/api/applications/{$application->id}", [
+            'position' => 'Application two',
+        ])
+            ->assertOk()
+            ->assertJson([
+                'data' => [
+                    'position' => 'Application two',
+                ],
+            ]);
+    }
+
+    public function test_delete_application()
+    {
+        $this->authenticated();
+
+        $application = Application::factory()->create();
+
+        $this->deleteJson("/api/applications/{$application->id}")
+            ->assertOk()
+            ->assertJson([
+                'message' => 'Application deleted successfully',
+            ]);
+    }
+
+    public function test_cannot_delete_non_existing_company()
+    {
+        $this->authenticated();
+        $this->deleteJson('/api/applications/999')
+            ->assertNotFound();
     }
 }

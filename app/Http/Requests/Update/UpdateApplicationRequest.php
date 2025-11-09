@@ -22,19 +22,19 @@ class UpdateApplicationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'position' => 'required|string',
-            'link' => 'required|string|',
+            'position' => 'sometimes|string',
+            'link' => 'sometimes|string|',
             'contact' => 'nullable|string|',
-            'applied_date' => 'required|date',
+            'applied_date' => 'sometimes|date',
             'interview_date' => 'nullable|date|',
-            'salary' => 'nulllable|decimal:2',
+            'salary' => 'nullable|decimal:2',
             'feedback' => 'nullable|string|',
-            'status_id' => 'required|numeric|exists:statuses,id',
-            'company_id' => 'required|string|exists:company,id',
+            'status_id' => 'sometimes|numeric|exists:statuses,id',
+            'company_id' => 'sometimes|string|exists:company,id',
             'city_id' => 'nullable|string|exists:city,id',
-            'modality_id' => 'required|string|exists:modalities,id',
-            'contract_id' => 'required|string|exists:contract,id',
-            'category_id' => 'required|string|exists:category,id',
+            'modality_id' => 'sometimes|string|exists:modalities,id',
+            'contract_id' => 'sometimes|string|exists:contract,id',
+            'category_id' => 'sometimes|string|exists:category,id',
         ];
     }
 }

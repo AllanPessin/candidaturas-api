@@ -27,14 +27,14 @@ class StoreApplicationRequest extends FormRequest
             'contact' => 'nullable|string|',
             'applied_date' => 'required|date',
             'interview_date' => 'nullable|date|',
-            'salary' => 'nulllable|decimal:2',
+            'salary' => 'nullable|decimal:2',
             'feedback' => 'nullable|string|',
             'status_id' => 'required|numeric|exists:statuses,id',
-            'company_id' => 'required|string|exists:company,id',
-            'city_id' => 'nullable|string|exists:city,id',
-            'modality_id' => 'required|string|exists:modalities,id',
-            'contract_id' => 'required|string|exists:contract,id',
-            'category_id' => 'required|string|exists:category,id',
+            'company_id' => 'required|numeric|exists:companies,id',
+            'city_id' => 'nullable|numeric|exists:cities,id',
+            'modality_id' => 'required|numeric|exists:modalities,id',
+            'contract_id' => 'required|numeric|exists:contracts,id',
+            'category_id' => 'required|numeric|exists:categories,id',
         ];
     }
 }
