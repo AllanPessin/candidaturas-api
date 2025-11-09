@@ -23,12 +23,12 @@ class StoreApplicationRequest extends FormRequest
     {
         return [
             'position' => 'required|string',
-            'link' => 'required|string|',
-            'contact' => 'nullable|string|',
+            'link' => 'required|string',
+            'contact' => 'nullable|string',
             'applied_date' => 'required|date',
-            'interview_date' => 'nullable|date|',
+            'interview_date' => 'nullable|date',
             'salary' => 'nullable|decimal:2',
-            'feedback' => 'nullable|string|',
+            'feedback' => 'nullable|string',
             'status_id' => 'required|numeric|exists:statuses,id',
             'company_id' => 'required|numeric|exists:companies,id',
             'city_id' => 'nullable|numeric|exists:cities,id',

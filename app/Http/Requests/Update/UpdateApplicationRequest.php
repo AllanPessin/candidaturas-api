@@ -23,18 +23,18 @@ class UpdateApplicationRequest extends FormRequest
     {
         return [
             'position' => 'sometimes|string',
-            'link' => 'sometimes|string|',
-            'contact' => 'nullable|string|',
+            'link' => 'sometimes|string',
+            'contact' => 'nullable|string',
             'applied_date' => 'sometimes|date',
-            'interview_date' => 'nullable|date|',
+            'interview_date' => 'nullable|date',
             'salary' => 'nullable|decimal:2',
-            'feedback' => 'nullable|string|',
+            'feedback' => 'nullable|string',
             'status_id' => 'sometimes|numeric|exists:statuses,id',
-            'company_id' => 'sometimes|string|exists:company,id',
-            'city_id' => 'nullable|string|exists:city,id',
-            'modality_id' => 'sometimes|string|exists:modalities,id',
-            'contract_id' => 'sometimes|string|exists:contract,id',
-            'category_id' => 'sometimes|string|exists:category,id',
+            'company_id' => 'sometimes|numeric|exists:companies,id',
+            'city_id' => 'nullable|numeric|exists:cities,id',
+            'modality_id' => 'sometimes|numeric|exists:modalities,id',
+            'contract_id' => 'sometimes|numeric|exists:contracts,id',
+            'category_id' => 'sometimes|numeric|exists:categories,id',
         ];
     }
 }
