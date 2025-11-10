@@ -19,7 +19,7 @@ collection:
         meta:
           id: req_248b4f6d11b84fa78c7adb7d4ee031c8
           created: 1758453095300
-          modified: 1758465341832
+          modified: 1762696848194
           isPrivate: false
           description: ""
           sortKey: -1758463606703
@@ -95,7 +95,7 @@ collection:
     meta:
       id: fld_ae51af6d93e0414aa7af33414fe0904d
       created: 1758463615168
-      modified: 1759608535744
+      modified: 1762686338038
       sortKey: -1758463594453
       description: ""
     children:
@@ -104,7 +104,7 @@ collection:
         meta:
           id: req_cafdd862655646769b6b28d6085569e7
           created: 1758463589631
-          modified: 1760877550080
+          modified: 1762698581401
           isPrivate: false
           description: ""
           sortKey: -1758463622130
@@ -113,7 +113,7 @@ collection:
           mimeType: application/json
           text: |-
             {
-            	"name": "Enviado"
+            	"name": "t"
             }
         headers:
           - name: Content-Type
@@ -1363,6 +1363,227 @@ collection:
           id: req_ced00dcaad9949c7af2d5e1e96d32f56
           created: 1760877739062
           modified: 1760878992458
+          isPrivate: false
+          description: ""
+          sortKey: -1758463612488.125
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+            id: pair_364d44f348f7489c8b29f2354b747fa2
+          - name: User-Agent
+            value: insomnia/11.5.0
+            id: pair_b9e1f0f1974a49f694d0d84d14c591ff
+          - id: pair_2371e555c55644c18fb5c26a05ae4cdc
+            name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+          - id: pair_9bc69d3d5d5e40aebb56211470cb597f
+            name: Authorization
+            value: Bearer {% response 'body', 'req_248b4f6d11b84fa78c7adb7d4ee031c8',
+              'b64::JC5hY2Nlc3NfdG9rZW4=::46b', 'never', 60 %}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Application
+    meta:
+      id: fld_e6394f22dc2243e99c0ac1faf683ad70
+      created: 1762685656513
+      modified: 1762685656513
+      sortKey: -1757931968254.875
+      description: ""
+    children:
+      - url: http://candidaturas.test/api/applications
+        name: store
+        meta:
+          id: req_ef95a65f996948ba87046eca52baa745
+          created: 1762685656514
+          modified: 1762686568978
+          isPrivate: false
+          description: ""
+          sortKey: -1758463622130
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"position": "teste",
+            	"link": "teste",
+            	"contact": "teste",
+            	"applied_date": "2025-11-09",
+            	"interview_date": "2025-11-09",
+            	"salary": 10.02,
+            	"feedback": "teste",
+            	"status_id": 1,
+            	"company_id": 1,
+            	"city_id": 2,
+            	"modality_id": 10,
+            	"contract_id": 1,
+            	"category_id": 1
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            id: pair_364d44f348f7489c8b29f2354b747fa2
+          - name: User-Agent
+            value: insomnia/11.5.0
+            id: pair_b9e1f0f1974a49f694d0d84d14c591ff
+          - id: pair_2371e555c55644c18fb5c26a05ae4cdc
+            name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+          - id: pair_9bc69d3d5d5e40aebb56211470cb597f
+            name: Authorization
+            value: Bearer {% response 'body', 'req_248b4f6d11b84fa78c7adb7d4ee031c8',
+              'b64::JC5hY2Nlc3NfdG9rZW4=::46b', 'never', 60 %}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://candidaturas.test/api/applications
+        name: index
+        meta:
+          id: req_1aac34790f4042b0b16c55252852b66f
+          created: 1762685656515
+          modified: 1762721195857
+          isPrivate: false
+          description: ""
+          sortKey: -1758463614416.5
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+            id: pair_364d44f348f7489c8b29f2354b747fa2
+          - name: User-Agent
+            value: insomnia/11.5.0
+            id: pair_b9e1f0f1974a49f694d0d84d14c591ff
+          - id: pair_2371e555c55644c18fb5c26a05ae4cdc
+            name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+          - id: pair_9bc69d3d5d5e40aebb56211470cb597f
+            name: Authorization
+            value: Bearer {% response 'body', 'req_248b4f6d11b84fa78c7adb7d4ee031c8',
+              'b64::JC5hY2Nlc3NfdG9rZW4=::46b', 'never', 60 %}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://candidaturas.test/api/applications/1
+        name: destroy
+        meta:
+          id: req_cbb6438f01e841dcbbb6af7819b8169a
+          created: 1762685656516
+          modified: 1762685679204
+          isPrivate: false
+          description: ""
+          sortKey: -1758463610559.75
+        method: DELETE
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+            id: pair_364d44f348f7489c8b29f2354b747fa2
+          - name: User-Agent
+            value: insomnia/11.5.0
+            id: pair_b9e1f0f1974a49f694d0d84d14c591ff
+          - id: pair_2371e555c55644c18fb5c26a05ae4cdc
+            name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+          - id: pair_9bc69d3d5d5e40aebb56211470cb597f
+            name: Authorization
+            value: Bearer {% response 'body', 'req_248b4f6d11b84fa78c7adb7d4ee031c8',
+              'b64::JC5hY2Nlc3NfdG9rZW4=::46b', 'never', 60 %}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://candidaturas.test/api/applications/1
+        name: update
+        meta:
+          id: req_e1798c719bf441ee93b249e9c8939244
+          created: 1762685656517
+          modified: 1762685671335
+          isPrivate: false
+          description: ""
+          sortKey: -1758463618273.25
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "PJ"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+            id: pair_364d44f348f7489c8b29f2354b747fa2
+          - name: User-Agent
+            value: insomnia/11.5.0
+            id: pair_b9e1f0f1974a49f694d0d84d14c591ff
+          - id: pair_2371e555c55644c18fb5c26a05ae4cdc
+            name: Accept
+            value: application/json
+            description: ""
+            disabled: false
+          - id: pair_9bc69d3d5d5e40aebb56211470cb597f
+            name: Authorization
+            value: Bearer {% response 'body', 'req_248b4f6d11b84fa78c7adb7d4ee031c8',
+              'b64::JC5hY2Nlc3NfdG9rZW4=::46b', 'never', 60 %}
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://candidaturas.test/api/applications/1
+        name: show
+        meta:
+          id: req_0e1789857880472f89d651cd0ddc04d6
+          created: 1762685656519
+          modified: 1762685676691
           isPrivate: false
           description: ""
           sortKey: -1758463612488.125
