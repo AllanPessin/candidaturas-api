@@ -147,6 +147,17 @@ class ModalitiesTest extends TestCase
             ->assertOk();
     }
 
+    public function test_cannot_delete_many_without_ids()
+    {
+        $this->authenticated();
+
+        $this->deleteJson('/api/modalities/destroy-many')
+            ->assertStatus(400)
+            ->assertJson([
+                'message' => 'No IDs provided.',
+            ]);
+    }
+
     public function test_cannot_bulk_delete_non_existing_ids()
     {
         $this->authenticated();

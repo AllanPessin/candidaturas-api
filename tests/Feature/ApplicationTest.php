@@ -27,7 +27,7 @@ class ApplicationTest extends TestCase
         $this->postJson('/api/applications', $application->toArray())
             ->assertStatus(201)
             ->assertJson(
-                fn(AssertableJson $json) => $json->where('message', 'Application created successfully')
+                fn (AssertableJson $json) => $json->where('message', 'Application created successfully')
             );
 
         $this->assertDatabaseHas('applications', [
@@ -58,9 +58,9 @@ class ApplicationTest extends TestCase
         $this->getJson('/api/applications?search=one')
             ->assertOk()
             ->assertJson(
-                fn(AssertableJson $json) => $json->has(
+                fn (AssertableJson $json) => $json->has(
                     'data.0',
-                    fn($item) => $item->where('position', 'Application one')
+                    fn ($item) => $item->where('position', 'Application one')
                         ->hasAll([
                             'link',
                             'contact',
@@ -73,7 +73,7 @@ class ApplicationTest extends TestCase
                 )
                     ->has(
                         'links',
-                        fn(AssertableJson $links) => $links->hasAll(['first', 'last', 'prev', 'next'])
+                        fn (AssertableJson $links) => $links->hasAll(['first', 'last', 'prev', 'next'])
                     )
                     ->hasAll(['meta', 'links'])
             );
@@ -89,11 +89,9 @@ class ApplicationTest extends TestCase
         $this->getJson("/api/applications/{$applicationOne->id}")
             ->assertOk()
             ->assertJson(
-                fn(AssertableJson $json) =>
-                $json->has(
+                fn (AssertableJson $json) => $json->has(
                     'data',
-                    fn($data) =>
-                    $data->where('position', 'Application one')
+                    fn ($data) => $data->where('position', 'Application one')
                         ->hasAll([
                             'link',
                             'contact',
@@ -116,13 +114,10 @@ class ApplicationTest extends TestCase
         $this->getJson('/api/applications')
             ->assertOk()
             ->assertJson(
-                fn(AssertableJson $json) =>
-                $json->has(
+                fn (AssertableJson $json) => $json->has(
                     'data',
-                    fn(AssertableJson $data) =>
-                    $data->each(
-                        fn(AssertableJson $item) =>
-                        $item->hasAll(
+                    fn (AssertableJson $data) => $data->each(
+                        fn (AssertableJson $item) => $item->hasAll(
                             [
                                 'position',
                                 'link',
@@ -138,7 +133,7 @@ class ApplicationTest extends TestCase
                 )
                     ->has(
                         'links',
-                        fn(AssertableJson $links) => $links->hasAll(['first', 'last', 'prev', 'next'])
+                        fn (AssertableJson $links) => $links->hasAll(['first', 'last', 'prev', 'next'])
                     )
                     ->hasAll(['meta', 'links'])
             );
