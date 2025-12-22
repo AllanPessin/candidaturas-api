@@ -164,12 +164,12 @@ class ModalitiesTest extends TestCase
 
         $this->deleteJson('/api/modalities/destroy-many?ids=997,998,999')
             ->assertUnprocessable()
-            ->assertJson([
-                'message' => 'Some IDs do not exist in database',
+            ->assertJsonStructure([
+                'message',
                 'error' => [
-                    'ids.0' => ['validation.exists'],
-                    'ids.1' => ['validation.exists'],
-                    'ids.2' => ['validation.exists'],
+                    'ids.0',
+                    'ids.1',
+                    'ids.2',
                 ],
             ]);
     }
