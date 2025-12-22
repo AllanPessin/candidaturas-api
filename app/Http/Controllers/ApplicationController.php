@@ -16,7 +16,7 @@ class ApplicationController extends Controller
     public function index(Request $request)
     {
         $applications = Application::when($request->search, function ($query) use ($request) {
-            $query->where('position', 'like', '%'.$request->search.'%');
+            $query->where('position', 'like', '%' . $request->search . '%');
         })
             ->paginate(10);
 
@@ -68,4 +68,3 @@ class ApplicationController extends Controller
         ]);
     }
 }
-//roda pipe
