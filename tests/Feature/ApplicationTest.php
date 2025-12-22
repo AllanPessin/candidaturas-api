@@ -79,7 +79,7 @@ class ApplicationTest extends TestCase
             );
     }
 
-    public function test_list_one_company()
+    public function test_list_one_applicaiton()
     {
         $this->authenticated();
 
