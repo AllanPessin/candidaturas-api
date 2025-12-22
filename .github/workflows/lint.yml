@@ -1,9 +1,16 @@
 name: Fix Code Style
 
-on: [push]
+on:
+  workflow_run:
+    workflows: ["Run Tests"]
+    types: [completed]
 
 jobs:
   lint:
+    if: >
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.head_branch == 'develop'
+
     runs-on: ubuntu-latest
     strategy:
       fail-fast: true
