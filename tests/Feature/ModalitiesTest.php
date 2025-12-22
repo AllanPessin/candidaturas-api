@@ -162,18 +162,14 @@ class ModalitiesTest extends TestCase
     {
         $this->authenticated();
 
-        $modalities1 = Modalities::factory()->create(['id' => 1]);
-        $modalities2 = Modalities::factory()->create(['id' => 2]);
-        $modalities3 = Modalities::factory()->create(['id' => 3]);
-
         $this->deleteJson('/api/modalities/destroy-many?ids=997,998,999')
             ->assertUnprocessable()
             ->assertJson([
                 'message' => 'Some IDs do not exist in database',
                 'error' => [
-                    'ids.0' => ['The selected ids.0 is invalid.'],
-                    'ids.1' => ['The selected ids.1 is invalid.'],
-                    'ids.2' => ['The selected ids.2 is invalid.'],
+                    'ids.0' => ['validation.exists'],
+                    'ids.1' => ['validation.exists'],
+                    'ids.2' => ['validation.exists'],
                 ],
             ]);
     }
