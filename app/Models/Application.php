@@ -28,6 +28,8 @@ class Application extends Model
         'category_id',
     ];
 
+    protected $with = ['status', 'company', 'city', 'modality', 'contract', 'category'];
+
     protected $casts = [
         'applied_date' => 'date',
         'interview_date' => 'date',
